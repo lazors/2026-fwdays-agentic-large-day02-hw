@@ -1,0 +1,27 @@
+---
+description: Protected files that must not be modified without explicit approval
+globs:
+alwaysApply: true
+---
+
+# Do Not Touch
+
+The following files and areas must NOT be modified without explicit user approval:
+
+- **`yarn.lock`** — never manually edit; only update via `yarn` commands
+- **`.env.production`** / **`.env.development`** — contain environment config, do not change
+- **`.husky/`** — git hooks configuration
+- **`.github/`** — CI/CD workflows and PR templates
+- **`firebase-project/`** — Firebase deployment config
+- **`packages/excalidraw/components/App.tsx`** — massive orchestration file (407KB); changes here are high-risk and require careful review
+- **`vercel.json`** — deployment routing config
+- **`crowdin.yml`** — i18n/translation config
+- **Build scripts in `scripts/`** — `buildPackage.js`, `buildBase.js`, `buildUtils.js`, `buildWasm.js`
+
+If a task requires changes to any of the above, stop and confirm with the user first.
+
+## How to verify
+
+- Run `git diff --name-only` and check that none of the protected files/directories appear.
+- If any protected file was changed, confirm it was explicitly requested by the user.
+- Pay special attention to `App.tsx` changes — review with extra care due to high blast radius.

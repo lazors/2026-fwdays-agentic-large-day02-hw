@@ -1,0 +1,44 @@
+---
+description: Testing framework, commands, coverage thresholds, and test conventions
+globs:
+  - "**/*.test.ts"
+  - "**/*.test.tsx"
+alwaysApply: false
+---
+
+# Testing
+
+## Framework
+
+- **Vitest** with jsdom environment
+- **@testing-library/react** for component tests
+- Setup file: `setupTests.ts` (root)
+
+## Running tests
+
+- `yarn test:app` — run tests in watch mode
+- `yarn test:all` — full suite (typecheck + code + other + app)
+- `yarn test:coverage` — coverage report
+
+## Coverage thresholds
+
+- Lines: 60%, Branches: 70%, Functions: 63%, Statements: 60%
+- Do not lower these thresholds.
+
+## Conventions
+
+- Tests are **colocated** next to source files (e.g., `foo.test.ts` beside `foo.ts`)
+- Fixture-heavy tests go in dedicated `tests/` directories
+- Use existing test helpers from `packages/excalidraw/tests/helpers/`:
+  - `render()` for component rendering
+  - `API.createElement()` for element creation
+  - `assertElements()` for element assertions
+- Always write tests for new features and bug fixes
+- Prefer integration-style tests that exercise real component behavior over shallow mocks
+
+## How to verify
+
+- Run `yarn test:app --watch=false` — all tests must pass.
+- Run `yarn test:coverage` — verify thresholds are not lowered (lines 60%, branches 70%, functions 63%, statements 60%).
+- Check that new/changed source files have corresponding `.test.ts(x)` files.
+- Verify test helpers are reused: search for `render(`, `API.createElement(`, `assertElements(` in new test files.

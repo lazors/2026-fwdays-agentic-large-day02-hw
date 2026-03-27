@@ -1,0 +1,38 @@
+---
+description: Monorepo structure, package dependencies, and key architectural patterns
+globs:
+alwaysApply: true
+---
+
+# Architecture
+
+This is a **monorepo** managed by Yarn workspaces with the following packages:
+
+- `packages/common` — shared constants, utilities, colors, queues, emitters
+- `packages/math` — 2D vector/geometry math (pure functions, no React)
+- `packages/element` — element logic: drawing, geometry, binding, alignment
+- `packages/utils` — export utilities (PNG, SVG, Canvas), file handling
+- `packages/excalidraw` — main React component library (the core UI)
+- `excalidraw-app` — the hosted app at excalidraw.com (PWA, collaboration, encryption)
+
+## Key patterns
+
+- **State management:** Jotai atoms for editor state. Never import `jotai` directly — use the wrapper modules (`editor-jotai` or `app-jotai`).
+- **Tunnels:** UI composition via tunnel pattern (`context/tunnels.ts`) to render components in portal locations without prop drilling.
+- **Action system:** User interactions are modeled as actions in `packages/excalidraw/actions/`.
+- **Canvas rendering:** Custom canvas renderer in `packages/excalidraw/renderer/`.
+- **Component composition:** Sub-components attached via `Object.assign` (e.g., `Sidebar.Tabs`, `DefaultSidebar.Trigger`).
+
+## Package dependency direction
+
+`common` ← `math` ← `element` ← `excalidraw` ← `excalidraw-app`
+`common` ← `utils`
+
+Never introduce circular dependencies between packages.
+
+## How to verify
+
+- Check Jotai imports: `grep -r "from \"jotai\"" packages/` should return no results (must use wrappers).
+- Check dependency direction: a file in `packages/common` must not import from `@excalidraw/element`, `@excalidraw/excalidraw`, etc.
+- Run `yarn build:packages` — circular dependencies cause build failures.
+- Verify new atoms use `editor-jotai` or `app-jotai`: search changed files for `import.*from.*jotai`.

@@ -1,0 +1,40 @@
+---
+description: Security rules for handling secrets, user input, and sensitive data
+globs:
+alwaysApply: true
+---
+
+# Security
+
+## Secrets & Environment Variables
+
+- NEVER hardcode secrets, API keys, tokens, or passwords in source code.
+- All secrets must come from environment variables (`.env.*` files).
+- Do NOT commit `.env.*` files — they are in `.gitignore`.
+- When adding a new env variable, update `.env.development` as a template (with placeholder values only).
+
+## User Input
+
+- Always sanitize user input before rendering (XSS prevention).
+- The codebase uses `sanitizeHTMLAttribute()` and similar helpers — use them, do not roll your own.
+- Never use `dangerouslySetInnerHTML` without explicit sanitization.
+- Never use `eval()`, `new Function()`, or `innerHTML` with user-controlled data.
+
+## Dependencies
+
+- Do not add new dependencies without justification — each new package is an attack surface.
+- Prefer well-maintained packages with active security patches.
+- Never install packages from untrusted sources or with known vulnerabilities.
+
+## Collaboration & Encryption
+
+- The `excalidraw-app` uses end-to-end encryption for collaboration.
+- Never log, store, or transmit decrypted collaboration data outside the client.
+- Encryption keys must never leave the browser.
+
+## How to verify
+
+- Grep for hardcoded secrets: search for patterns like `apiKey`, `secret`, `token`, `password` with string literal values.
+- Check that no `.env.*` files are staged: `git diff --cached --name-only | grep '.env'`.
+- Search for `dangerouslySetInnerHTML`, `eval(`, `innerHTML` in changed files.
+- Run `yarn lint` — ESLint catches some security issues.

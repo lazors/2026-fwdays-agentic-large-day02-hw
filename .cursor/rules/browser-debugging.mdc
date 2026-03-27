@@ -1,0 +1,48 @@
+---
+description: Rules for using Chrome DevTools MCP server to debug and inspect the running Excalidraw app
+globs:
+alwaysApply: false
+---
+
+# Browser Debugging with Chrome DevTools MCP
+
+The project has a Chrome DevTools MCP server configured for live browser debugging.
+
+## When to use
+
+- Debugging rendering issues on the canvas
+- Inspecting DOM structure of Excalidraw components
+- Checking console errors/warnings at runtime
+- Verifying CSS/SCSS changes visually
+- Testing collaboration features in the browser
+- Checking network requests (Firebase, collaboration endpoints)
+
+## Available MCP actions
+
+- **Navigate:** Open `http://localhost:5173` (Vite dev server) in the browser
+- **Console:** Read console logs, errors, warnings
+- **DOM inspection:** Query selectors, get element properties
+- **Network:** Monitor fetch/XHR requests
+- **Screenshots:** Capture the current page state
+- **Evaluate JS:** Run JavaScript in the browser context
+
+## Workflow
+
+1. Ensure dev server is running: `yarn start`
+2. Use MCP to navigate to `http://localhost:5173`
+3. Interact with the app via MCP (click, type, evaluate)
+4. Inspect results (console, DOM, screenshots)
+
+## Rules
+
+- Always start the dev server (`yarn start`) before using browser MCP.
+- Do NOT use browser MCP to modify source files — use it for inspection only.
+- When reporting visual bugs, take a screenshot via MCP as evidence.
+- Check console for errors after any UI interaction.
+- The app runs on port 5173 (Vite default) in development.
+
+## How to verify
+
+- Confirm dev server is running: `curl -s http://localhost:5173 | head -1` should return HTML.
+- Check MCP connection: the browser MCP tool list should be available in Cursor.
+- After debugging, verify that no browser-side changes leaked into source files.

@@ -1,0 +1,47 @@
+---
+description: TypeScript conventions, naming, imports, and styling rules
+globs:
+alwaysApply: true
+---
+
+# Code Conventions
+
+## TypeScript
+
+- Strict mode is enabled. Do not use `any` — prefer `unknown` or proper types.
+- Use `import type` for type-only imports (enforced by ESLint).
+- Path aliases: use `@excalidraw/*` for cross-package imports.
+- Inside `packages/excalidraw`, use direct relative imports — do NOT import from the barrel `index.tsx`.
+
+## Naming
+
+- **Components:** PascalCase (`DefaultSidebar`, `ExcalidrawAPIProvider`)
+- **Functions/hooks:** camelCase (`useAppStateValue`, `sceneCoordsToViewportCoords`)
+- **Constants:** UPPER_SNAKE_CASE (`DEFAULT_UI_OPTIONS`, `ZOOM_STEP`)
+- **Types/Interfaces:** PascalCase, no `I` prefix (`ExcalidrawProps`, `AppState`)
+- **Files:** match the primary export name; tests use `.test.ts` / `.test.tsx` suffix
+
+## Import ordering (enforced by ESLint)
+
+1. React & React libraries
+2. External packages
+3. `@excalidraw/*` packages
+4. Relative imports
+5. CSS/SCSS
+
+## Styling
+
+- SCSS modules colocated with components (`.scss` files next to `.tsx`)
+- Use existing design tokens and variables from the codebase
+
+## Dependencies
+
+- Pin exact versions (`save-exact=true` in `.npmrc`)
+- Use `legacy-peer-deps=true` for install compatibility
+
+## How to verify
+
+- Run `yarn lint` — catches import ordering, type import issues, and naming violations.
+- Run `yarn test:typecheck` — ensures strict TypeScript compliance, no `any` leaks.
+- Check naming in changed files: components should be PascalCase, hooks/functions camelCase, constants UPPER_SNAKE_CASE.
+- Verify import ordering follows the 5-group structure: React → external → @excalidraw → relative → CSS.
