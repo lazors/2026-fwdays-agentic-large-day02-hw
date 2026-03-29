@@ -1,6 +1,6 @@
 # Directory Structure
 
-```
+```text
 .coderabbit.yaml (234 lines)
 .codesandbox/Dockerfile (5 lines)
 .codesandbox/tasks.json (50 lines)

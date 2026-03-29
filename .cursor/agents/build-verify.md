@@ -12,7 +12,7 @@ Run these in order:
 
 1. **Install deps** (if needed): `yarn install`
 2. **Type check:** `yarn test:typecheck`
-3. **Lint:** `yarn lint`
+3. **Lint:** `yarn test:code`
 4. **Build packages:** `yarn build:packages`
 5. **Run tests:** `yarn test:app --watch=false`
 
@@ -28,8 +28,8 @@ Status: ✅ Pass | ❌ Fail
 End with a summary:
 ```
 ## Summary
-Passed: N/4
-Failed: N/4
+Passed: N/5
+Failed: N/5
 ```
 
 ## Rules

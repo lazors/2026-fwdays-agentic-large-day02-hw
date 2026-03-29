@@ -1,6 +1,5 @@
 ---
 description: Security rules for handling secrets, user input, and sensitive data
-globs:
 alwaysApply: true
 ---
 
@@ -37,4 +36,4 @@ alwaysApply: true
 - Grep for hardcoded secrets: search for patterns like `apiKey`, `secret`, `token`, `password` with string literal values.
 - Check that no `.env.*` files are staged: `git diff --cached --name-only | grep '.env'`.
 - Search for `dangerouslySetInnerHTML`, `eval(`, `innerHTML` in changed files.
-- Run `yarn lint` — ESLint catches some security issues.
+- Run `yarn test:code` — ESLint catches some security issues.

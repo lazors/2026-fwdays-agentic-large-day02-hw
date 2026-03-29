@@ -2,11 +2,12 @@
 
 ## Languages
 
-- Node.js
-
-## Frameworks
-
 - TypeScript
+- JavaScript
+
+## Runtime
+
+- Node.js
 
 ## Package Manager
 

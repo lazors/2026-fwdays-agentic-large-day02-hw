@@ -1,6 +1,5 @@
 ---
 description: Protected files that must not be modified without explicit approval
-globs:
 alwaysApply: true
 ---
 

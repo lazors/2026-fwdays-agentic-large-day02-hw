@@ -30,27 +30,31 @@ Use this skill when you need to:
 
 Check `project-structure.md` for the directory tree:
 
-```
-src/
-  index.ts (42 lines)
-  utils/
-    helpers.ts (128 lines)
+```text
+packages/
+  excalidraw/
+    components/App.tsx (8000+ lines)
+    actions/
+  math/
+  element/
+  common/
+excalidraw-app/
 ```
 
 ### 2. Read file contents
 
 Grep in `files.md` for the file path:
 
-```
-## File: src/utils/helpers.ts
+```text
+## File: packages/excalidraw/actions/actionCanvas.tsx
 ```
 
 ### 3. Search for code
 
 Grep in `files.md` for keywords:
 
-```
-function calculateTotal
+```text
+sceneCoordsToViewportCoords
 ```
 
 ## Common Use Cases

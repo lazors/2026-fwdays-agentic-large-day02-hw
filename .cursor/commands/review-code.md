@@ -4,7 +4,7 @@ Review the currently selected code or the files changed in the current branch.
 
 ## Steps
 
-1. **Identify scope:** If code is selected, review that. Otherwise, run `git diff --name-only main...HEAD` to find changed files.
+1. **Identify scope:** If code is selected, review that. Otherwise, run `git diff --name-only master...HEAD` to find changed files.
 
 2. **For each file, check:**
    - **Correctness:** Logic errors, off-by-one, null/undefined risks
@@ -16,7 +16,8 @@ Review the currently selected code or the files changed in the current branch.
    - **Do-not-touch:** Flag if any protected files were modified
 
 3. **Output format:**
-   ```
+
+   ```text
    ## <filename>
    - 🔴 Critical: <issue>
    - 🟡 Warning: <issue>

@@ -9,6 +9,7 @@ The user provides: `<ComponentName>` (PascalCase).
 ## Steps
 
 1. **Create the component file** at `packages/excalidraw/components/<ComponentName>.tsx`:
+
    ```tsx
    import { useAppStateValue } from "../hooks/useAppStateValue";
 
@@ -24,6 +25,7 @@ The user provides: `<ComponentName>` (PascalCase).
    ```
 
 2. **Create the SCSS file** at `packages/excalidraw/components/<ComponentName>.scss`:
+
    ```scss
    .<ComponentName> {
      // TODO: add styles
@@ -31,8 +33,9 @@ The user provides: `<ComponentName>` (PascalCase).
    ```
 
 3. **Create the test file** at `packages/excalidraw/components/<ComponentName>.test.tsx`:
+
    ```tsx
-   import { render } from "../tests/helpers/ui";
+   import { render } from "../tests/test-utils";
    import { <ComponentName> } from "./<ComponentName>";
 
    describe("<ComponentName>", () => {

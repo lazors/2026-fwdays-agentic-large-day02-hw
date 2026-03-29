@@ -1,6 +1,5 @@
 ---
 description: Rules for using Chrome DevTools MCP server to debug and inspect the running Excalidraw app
-globs:
 alwaysApply: false
 ---
 
