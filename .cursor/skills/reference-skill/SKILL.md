@@ -60,17 +60,21 @@ sceneCoordsToViewportCoords
 
 ## Common Use Cases
 
-**Understand a feature:**
-1. Search `project-structure.md` for related file names
-2. Read the main implementation file in `files.md`
-3. Search for imports/references to trace dependencies
+**Find action handlers:**
+1. Grep `files.md` for the action name (e.g., `actionCanvas`, `actionExport`)
+2. Actions live in `packages/excalidraw/actions/` — check `actionTypes` for the registry
 
-**Debug an error:**
-1. Grep the error message or class name in `files.md`
-2. Check line counts in `project-structure.md` to find large files
+**Trace the render flow:**
+1. Grep `files.md` for `renderScene` (entry point in `packages/excalidraw/renderer/`)
+2. Follow to `drawElement` calls in `packages/utils/src/export.ts` and renderer files
 
-**Find all usages:**
-1. Grep function or variable name in `files.md`
+**Find canvas/scene/tool UI:**
+1. Grep `files.md` for component names like `Canvas`, `Scene`, `ToolButton`
+2. UI components live in `packages/excalidraw/components/`
+
+**Trace a utility across packages:**
+1. Grep the function name in `files.md` (e.g., `normalizeLink`, `sceneCoordsToViewportCoords`)
+2. Check imports to understand cross-package dependencies (`packages/common` → `packages/element` → `packages/excalidraw`)
 
 ## Tips
 

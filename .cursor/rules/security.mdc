@@ -12,13 +12,15 @@ alwaysApply: true
 - Do NOT commit `.env.*` files — they are in `.gitignore`.
 - When adding a new env variable, update `.env.development` as a template (with placeholder values only).
 
-## User Input
+## User Input & XSS Prevention
 
-- Always sanitize user input before rendering (XSS prevention).
-- Be cautious with SVG imports and `.excalidraw` / library file parsing — these accept external data and must be validated.
+- Always sanitize user input before rendering.
+- **SVG imports:** Whitelist allowed tags/attributes and strip event handlers (`onload`, `onclick`, etc.) when importing external SVGs.
+- **`.excalidraw` / library files:** Validate JSON fields before parsing — reject unexpected types or deeply nested structures.
+- **URLs and links:** Use `normalizeLink()` and `toValidURL()` from `@excalidraw/common/url` for URL validation. Never allow `javascript:` or `data:` URLs in element links or hyperlinks.
+- **Canvas text rendering:** Element properties (`text`, `link`, `customData`) must not be passed to DOM APIs unsanitized — canvas rendering is safe, but any HTML/SVG export paths must escape these values.
 - Never use `dangerouslySetInnerHTML` without explicit sanitization.
 - Never use `eval()`, `new Function()`, or `innerHTML` with user-controlled data.
-- When rendering user-provided text on canvas, ensure no script injection is possible through element properties.
 
 ## Dependencies
 

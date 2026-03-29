@@ -39,7 +39,7 @@ Package dependency direction: `common` ← `math` ← `element` ← `excalidraw`
 
 | Command | Description |
 |---|---|
-| `yarn start` | Start dev server (Vite, port 5173) |
+| `yarn start` | Start dev server (Vite, port from `VITE_APP_PORT`, defaults to 3000) |
 | `yarn build:packages` | Build all publishable packages |
 | `yarn test:app --watch=false` | Run tests (Vitest) |
 | `yarn test:typecheck` | TypeScript type checking |
