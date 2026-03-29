@@ -17,7 +17,7 @@ Excalidraw — an open-source virtual whiteboard for sketching hand-drawn-like d
 
 ## Project Structure
 
-```
+```text
 packages/common/     — shared constants, utilities, colors, queues, emitters
 packages/math/       — 2D vector/geometry math (pure functions, no React)
 packages/element/    — element logic: drawing, geometry, binding, alignment

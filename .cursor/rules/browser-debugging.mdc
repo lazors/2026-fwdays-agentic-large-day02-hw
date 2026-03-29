@@ -18,7 +18,7 @@ The project has a Chrome DevTools MCP server configured for live browser debuggi
 
 ## Available MCP actions
 
-- **Navigate:** Open `http://localhost:5173` (Vite dev server) in the browser
+- **Navigate:** Open the dev server URL (port from `VITE_APP_PORT` env var, defaults to 3000) in the browser
 - **Console:** Read console logs, errors, warnings
 - **DOM inspection:** Query selectors, get element properties
 - **Network:** Monitor fetch/XHR requests
@@ -28,7 +28,7 @@ The project has a Chrome DevTools MCP server configured for live browser debuggi
 ## Workflow
 
 1. Ensure dev server is running: `yarn start`
-2. Use MCP to navigate to `http://localhost:5173`
+2. Use MCP to navigate to the dev server URL (default `http://localhost:3000`)
 3. Interact with the app via MCP (click, type, evaluate)
 4. Inspect results (console, DOM, screenshots)
 
@@ -38,10 +38,10 @@ The project has a Chrome DevTools MCP server configured for live browser debuggi
 - Do NOT use browser MCP to modify source files — use it for inspection only.
 - When reporting visual bugs, take a screenshot via MCP as evidence.
 - Check console for errors after any UI interaction.
-- The app runs on port 5173 (Vite default) in development.
+- The app runs on the port specified by `VITE_APP_PORT` (defaults to 3000) in development.
 
 ## How to verify
 
-- Confirm dev server is running: `curl -s http://localhost:5173 | head -1` should return HTML.
+- Confirm dev server is running: `curl -s http://localhost:3000 | head -1` should return HTML (adjust port if `VITE_APP_PORT` is set).
 - Check MCP connection: the browser MCP tool list should be available in Cursor.
 - After debugging, verify that no browser-side changes leaked into source files.

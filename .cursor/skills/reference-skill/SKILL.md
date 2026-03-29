@@ -33,11 +33,12 @@ Check `project-structure.md` for the directory tree:
 ```text
 packages/
   excalidraw/
-    components/App.tsx (8000+ lines)
+    components/
     actions/
   math/
   element/
   common/
+  utils/
 excalidraw-app/
 ```
 

@@ -15,9 +15,10 @@ alwaysApply: true
 ## User Input
 
 - Always sanitize user input before rendering (XSS prevention).
-- The codebase uses `sanitizeHTMLAttribute()` and similar helpers — use them, do not roll your own.
+- Be cautious with SVG imports and `.excalidraw` / library file parsing — these accept external data and must be validated.
 - Never use `dangerouslySetInnerHTML` without explicit sanitization.
 - Never use `eval()`, `new Function()`, or `innerHTML` with user-controlled data.
+- When rendering user-provided text on canvas, ensure no script injection is possible through element properties.
 
 ## Dependencies
 
