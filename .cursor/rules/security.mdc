@@ -9,15 +9,15 @@ alwaysApply: true
 
 - NEVER hardcode secrets, API keys, tokens, or passwords in source code.
 - All secrets must come from environment variables (`.env.*` files).
-- Do NOT commit `.env.*` files — they are in `.gitignore`.
-- When adding a new env variable, update `.env.development` as a template (with placeholder values only).
+- `.env.development` is the **template file** — it contains only placeholder values (no real secrets) and may be committed. When adding a new env variable, add a placeholder entry here.
+- All other `.env.*` files (e.g., `.env.production`, `.env.local`) contain real secrets, must NOT be committed, and are listed in `.gitignore`.
 
 ## User Input & XSS Prevention
 
 - Always sanitize user input before rendering.
 - **SVG imports:** Whitelist allowed tags/attributes and strip event handlers (`onload`, `onclick`, etc.) when importing external SVGs.
 - **`.excalidraw` / library files:** Validate JSON fields before parsing — reject unexpected types or deeply nested structures.
-- **URLs and links:** Use `normalizeLink()` and `toValidURL()` from `@excalidraw/common/url` for URL validation. Never allow `javascript:` or `data:` URLs in element links or hyperlinks.
+- **URLs and links:** Use `normalizeLink()` and `toValidURL()` from `@excalidraw/common` for URL validation. Never allow `javascript:` or `data:` URLs in element links or hyperlinks.
 - **Canvas text rendering:** Element properties (`text`, `link`, `customData`) must not be passed to DOM APIs unsanitized — canvas rendering is safe, but any HTML/SVG export paths must escape these values.
 - Never use `dangerouslySetInnerHTML` without explicit sanitization.
 - Never use `eval()`, `new Function()`, or `innerHTML` with user-controlled data.

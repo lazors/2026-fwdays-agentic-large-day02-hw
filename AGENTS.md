@@ -89,6 +89,6 @@ Never import `jotai` directly. Use:
 ### What to Avoid
 
 - Do not add new dependencies without justification.
-- Do not refactor unrelated code while fixing a bug.
-- Do not lower test coverage thresholds.
+- Avoid refactoring unrelated code when addressing a bug.
+- Maintain current test coverage thresholds.
 - Do not introduce circular dependencies between packages.
